@@ -57,112 +57,112 @@
 
 #### Inscription et Connexion :
 - Développer le Formulaire d'Inscription et de Connexion :
-  - Créer les interfaces utilisateur pour l'inscription et la connexion. FR BCK
-  - Implémenter la validation des champs du formulaire (email, mot de passe). FR BCK
+  - Créer les interfaces utilisateur pour l'inscription et la connexion. (FR BCK)
+  - Implémenter la validation des champs du formulaire (email, mot de passe). (FR BCK)
 - Configurer l'Authentification :
-  - Utiliser des bibliothèques comme JWT pour gérer l'authentification des utilisateurs.
-  - Stocker les jetons de session de manière sécurisée.
+  - Utiliser des bibliothèques comme JWT pour gérer l'authentification des utilisateurs. (BK)
+  - Stocker les jetons de session de manière sécurisée. (BK)
 - Gérer les Erreurs et les Réussites :
-  - Afficher des messages appropriés en cas d'erreur ou de succès lors de l'inscription ou de la connexion.
+  - Afficher des messages appropriés en cas d'erreur ou de succès lors de l'inscription ou de la connexion. (FR BK)
 
 #### Gestion des Profils :
 - Créer l'Interface de Profil :
-  - Développer une page pour afficher et mettre à jour les informations personnelles des utilisateurs.
+  - Développer une page pour afficher et mettre à jour les informations personnelles des utilisateurs.(FR BK)
 - Implémenter la Mise à Jour des Profils :
-  - Assurer la validation et le stockage des informations mises à jour.
-  - Gérer les erreurs et les confirmations de mise à jour.
+  - Assurer la validation et le stockage des informations mises à jour. (FR BK)
+  - Gérer les erreurs et les confirmations de mise à jour. (FR BK)
 
 ### Gestion des Annonces 
 
 #### Ajout de Propriétés
 - Créer le Formulaire d'Ajout de Propriétés :
-  - Développer une interface pour la soumission de nouvelles annonces.
-  - Valider et stocker les informations des propriétés (photos, descriptions, prix, etc.).
+  - Développer une interface pour la soumission de nouvelles annonces. (FR BK)
+  - Valider et stocker les informations des propriétés (photos, descriptions, prix, etc.). (FR BK)
 - Gérer les Médias :
-  - Assurer le téléchargement et le stockage sécurisés des photos des propriétés.
+  - Assurer le téléchargement et le stockage sécurisés des photos des propriétés.(BK)
 
 #### Recherche de Biens
 - Développer le Système de Recherche :
-  - Créer une interface utilisateur pour les filtres de recherche.
-  - Implémenter la logique de filtrage basé sur les critères (prix, localisation, type de propriété).
+  - Créer une interface utilisateur pour les filtres de recherche. (FR)
+  - Implémenter la logique de filtrage basé sur les critères (prix, localisation, type de propriété). (FR BK)
 
 #### Visualisation des Annonces
 - Créer les Pages de Détail des Propriétés :
-  - Développer une interface utilisateur pour afficher les détails complets des propriétés.
-  - Inclure des galeries de photos, des cartes de localisation, et des descriptions détaillées.
+  - Développer une interface utilisateur pour afficher les détails complets des propriétés. (FR)
+  - Inclure des galeries de photos, des cartes de localisation, et des descriptions détaillées. (FR BK)
 - Optimiser l'Affichage :
-  - Assurer que les pages se chargent rapidement et sont bien structurées pour une expérience utilisateur optimale.
+  - Assurer que les pages se chargent rapidement et sont bien structurées pour une expérience utilisateur optimale. (FR BK)
 
 #### Gérer des Annonces :
 - Développer les Outils d'Administration :
-  - Créer une interface pour que les administrateurs puissent supprimer des annonces.
+  - Créer une interface pour que les administrateurs puissent supprimer des annonces. (FR BK)
 - Valider et Rejeter les Annonces :
-  - Mettre en place un système de validation des nouvelles annonces soumises par les utilisateurs.
-  - Notifier les utilisateurs de l'état de leurs annonces (acceptée, rejetée).
+  - Mettre en place un système de validation des nouvelles annonces soumises par les utilisateurs. (FR BK)
+  - Notifier les utilisateurs de l'état de leurs annonces (acceptée, rejetée). (FR BK)
 
 ### Réservations
 
 #### Réservation de Visites :
 - Développer le Formulaire de Réservation :
-  - Créer une interface pour la programmation des visites.
-  - Valider et stocker les informations de réservation (date, heure, utilisateur).
+  - Créer une interface pour la programmation des visites. (FR BK)
+  - Valider et stocker les informations de réservation (date, heure, utilisateur). (FR BK)
 - Implémenter le Calendrier des Disponibilités :
-  - Afficher les dates et heures disponibles pour les visites.
-  - Mettre à jour le calendrier en fonction des réservations existantes.
+  - Afficher les dates et heures disponibles pour les visites. (FR BK)
+  - Mettre à jour le calendrier en fonction des réservations existantes. (FR BK)
 
 #### Gestion des Réservations :
 - Développer une Interface de Suivi des Réservations :
-  - Créer un tableau de bord pour les bailleurs affichant toutes les réservations.
-  - Inclure des filtres pour trier les réservations par date, utilisateur, statut, etc.
+  - Créer un tableau de bord pour les bailleurs affichant toutes les réservations. (FR BK)
+  - Inclure des filtres pour trier les réservations par date, utilisateur, statut, etc. (FR)
 - Implémenter la Modification des Réservations :
-  - Ajouter des fonctionnalités permettant aux bailleurs de modifier les réservations existantes.
-  - Gérer les conflits de disponibilité en cas de modification d'heure ou de date.
+  - Ajouter des fonctionnalités permettant aux bailleurs de modifier les réservations existantes. (FR BK)
+  - Gérer les conflits de disponibilité en cas de modification d'heure ou de date. (FR BK)
 - Gérer les Statuts de Réservation :
-  - Définir différents statuts de réservation (confirmé, annulé, en attente).
-  - Permettre aux bailleurs de changer le statut des réservations.
-  - Mettre à jour les utilisateurs sur le statut de leur réservation via des notifications.
+  - Définir différents statuts de réservation (confirmé, annulé, en attente). (FR BK)
+  - Permettre aux bailleurs de changer le statut des réservations. (FR BK)
+  - Mettre à jour les utilisateurs sur le statut de leur réservation via des notifications. (FR BK)
 
 ### Statistiques
 
 #### Tableaux de Bord :
 - Développer les Tableaux de Bord Statistiques :
-  - Créer des tableaux de bord pour afficher les statistiques clés (Pour l’admin, les utilisateurs (Charts…)).
+  - Créer des tableaux de bord pour afficher les statistiques clés (Pour l’admin, les utilisateurs (Charts…)). (FR BK)
 - Optimiser l'Affichage des Données :
-  - Assurer que les tableaux de bord sont clairs, informatifs, et faciles à comprendre.
+  - Assurer que les tableaux de bord sont clairs, informatifs, et faciles à comprendre. (FR BK)
 
 ### Notifications
 
 #### Système de Notifications :
 - Envoyer des Notifications :
-  - Générer et envoyer des notifications appropriées aux utilisateurs.
-  - Assurer la personnalisation des messages de notification en fonction des utilisateurs et des événements.
+  - Générer et envoyer des notifications appropriées aux utilisateurs. (FR BK)
+  - Assurer la personnalisation des messages de notification en fonction des utilisateurs et des événements. (FR BK)
 
 ### Système de Support
 
 #### Messagerie Interne :
 - Développer le Système de Messagerie :
-  - Créer une interface utilisateur pour envoyer et recevoir des messages.
-  - Implémenter la fonctionnalité de notification pour les nouveaux messages.
+  - Créer une interface utilisateur pour envoyer et recevoir des messages. (FR BK)
+  - Implémenter la fonctionnalité de notification pour les nouveaux messages. (FR BK)
 
 #### Gestion des Demandes de Support :
 - Développer une Interface de Suivi des Demandes de Support :
-  - Créer un tableau de bord pour les administrateurs affichant toutes les demandes de support.
-  - Inclure des filtres pour trier les demandes par date, utilisateur, statut, etc.
+  - Créer un tableau de bord pour les administrateurs affichant toutes les demandes de support. (FR BK)
+  - Inclure des filtres pour trier les demandes par date, utilisateur, statut, etc. (FR BK)
 
 ### Intégration API Externe
 
 #### Communication API Sécurisée :
 - Implémenter l'Authentification et l'Autorisation :
-  - Mettre en place des mécanismes d'authentification basés sur des jetons (JWT) ou OAuth.
-  - Gérer les permissions et les rôles pour contrôler l'accès aux différentes parties de l'API.
+  - Mettre en place des mécanismes d'authentification basés sur des jetons (JWT) ou OAuth. (Bk)
+  - Gérer les permissions et les rôles pour contrôler l'accès aux différentes parties de l'API. (FR BK)
 
 #### Charts :
 - Récupérer et Intégrer les Données :
-  - Développer des scripts ou des services pour interroger les API externes et récupérer les données nécessaires.
-  - Formater et intégrer ces données pour les utiliser dans les visualisations.
+  - Développer des scripts ou des services pour interroger les API externes et récupérer les données nécessaires. (FR BK)
+  - Formater et intégrer ces données pour les utiliser dans les visualisations. (FR BK)
 - Créer des Visualisations de Données :
-  - Utiliser des bibliothèques de graphiques pour développer des visualisations interactives.
-  - S'assurer que les graphiques sont clairs, informatifs, et faciles à comprendre.
+  - Utiliser des bibliothèques de graphiques pour développer des visualisations interactives. (FR BK)
+  - S'assurer que les graphiques sont clairs, informatifs, et faciles à comprendre. (FR)
 
 
    
