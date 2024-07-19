@@ -57,8 +57,8 @@
 
 #### Inscription et Connexion :
 - Développer le Formulaire d'Inscription et de Connexion :
-  - Créer les interfaces utilisateur pour l'inscription et la connexion.
-  - Implémenter la validation des champs du formulaire (email, mot de passe).
+  - Créer les interfaces utilisateur pour l'inscription et la connexion. FR BCK
+  - Implémenter la validation des champs du formulaire (email, mot de passe). FR BCK
 - Configurer l'Authentification :
   - Utiliser des bibliothèques comme JWT pour gérer l'authentification des utilisateurs.
   - Stocker les jetons de session de manière sécurisée.
