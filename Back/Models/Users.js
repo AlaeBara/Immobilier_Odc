@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true // This allows the field to be unique only if it exists
     }
 });
 

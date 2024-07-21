@@ -25,7 +25,9 @@ app.use('/', router)
 
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    serverSelectionTimeoutMS: 30000 // Increase to 30 seconds
+})
     .then(() => {
         console.log("MongoDB connected successfully");
     })

@@ -4,6 +4,8 @@ const crypto = require('crypto');
 
 const {signUp}=require('../Controllers/Sign/Sign_up')
 const {Authentification}=require('../Controllers/Sign/Sign_in')
+const {googleAuth} =require('../Controllers/Sign/Outh')
+
 const {jwt}=require('../Middelwares/jwt')
 
 
@@ -14,6 +16,8 @@ const secretKey = crypto.randomBytes(32).toString('hex');
 router.post('/signUp',signUp);
 //  Authentification:
 router.post('/signIn',Authentification(secretKey));
+// Sign with Google
+router.post('/googleAuth', googleAuth(secretKey));
 
 
 
