@@ -55,7 +55,7 @@
 
 ### Gestion des Utilisateurs
 
-#### Inscription et Connexion :
+#### Inscription et Connexion :  ==> Sprint 1 
 - Développer le Formulaire d'Inscription et de Connexion :
   - Créer les interfaces utilisateur pour l'inscription et la connexion. (FR BCK)
   - Implémenter la validation des champs du formulaire (email, mot de passe). (FR BCK)
