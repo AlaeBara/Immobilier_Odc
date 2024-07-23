@@ -1,21 +1,23 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CustomLoader from './components/Loader/Loader';
+import ProtectRoutes from './components/ProtectRoutes/ProtectRoutes'
 
 const wait = (delay) => new Promise(resolve => setTimeout(resolve, delay));
 
 // Lazy loading components
 
-const LazySign = lazy(() => wait(1000).then(() => import('./components/Sign/Sign')));
-
+const LazySign = lazy(() => wait(2000).then(() => import('./components/Sign/Sign')));
 const LazyMainComponent = lazy(() => wait(1000).then(() => import('./utilisateur/Main_component')));
 const LazyProfileUser = lazy(() => wait(1000).then(() => import('./utilisateur/Profile/Profile')));
 
 
 const UserLayout = ({ children }) => (
   <Suspense fallback={<CustomLoader />}>
-    <LazyMainComponent />
-    {children}
+    <ProtectRoutes>
+      <LazyMainComponent />
+      {children}
+    </ProtectRoutes>
   </Suspense>
 );
 

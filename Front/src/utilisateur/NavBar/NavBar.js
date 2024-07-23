@@ -1,4 +1,6 @@
-import React,{useEffect} from 'react'
+import React from 'react'
+import axios  from 'axios'
+import { useNavigate } from 'react-router-dom';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -7,21 +9,35 @@ const NavBar = () => {
         const overlay = document.querySelector("[data-overlay]");
         navbar.classList.toggle("active");
         overlay.classList.toggle("active");
-      };
+    };
     
-      const handleScroll = () => {
+    const handleScroll = () => {
         const header = document.querySelector("[data-header]");
         if (window.scrollY >= 400) {
           header.classList.add("active");
         } else {
           header.classList.remove("active");
         }
-      };
+    };
     
-      React.useEffect(() => {
+    React.useEffect(() => {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-      }, []);
+    }, []);
+
+    const navigate = useNavigate();
+    const handleLogout = async () => {
+        try {
+            await axios.get('http://localhost:8000/logout',{withCredentials:true});
+            navigate('/'); 
+        } catch (error) {
+            console.error('Logout failed:', error);
+            alert("Logout failed");
+        }
+    };
+
+
+    
   return (
     <>
         <header class="header" data-header>
@@ -91,6 +107,12 @@ const NavBar = () => {
                                 <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/user-male-circle.png" alt="user-male-circle"/>
                             </a>
                             <span>Profile</span>
+                        </button>
+                        <button class="header-bottom-actions-btn" aria-label="Search">
+                            <a onClick={handleLogout}>
+                                <img width="30" height="30" src="https://img.icons8.com/sf-regular/48/exit.png" alt="user-male-circle"/>
+                            </a>
+                            <span>Log out</span>
                         </button>
 
                         <button class="header-bottom-actions-btn" onClick={toggleNavbar} data-nav-open-btn aria-label="Open Menu">

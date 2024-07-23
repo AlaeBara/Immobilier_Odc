@@ -22,7 +22,7 @@ const SignUpForm = ({onSignUpSuccess}) => {
   
       setMessage(response.data.message);
       if (response.data.status === 'success') {
-        history('/test')
+        history('/user/Profile')
       }
     } catch (error) {
       console.error("Error occurred:", error.response ? error.response.data : error.message);

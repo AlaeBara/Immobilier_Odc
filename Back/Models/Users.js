@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         unique: true,
         sparse: true // This allows the field to be unique only if it exists
+    },
+    phone: {
+        type: String,
+        default: "null"
     }
 });
 

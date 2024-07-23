@@ -3,9 +3,11 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser')
-const router =require('./Router/Router')
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+
+const router =require('./Router/Router')
+const userRouter =require('./Router/UserRouter')
 
 const app = express();
 app.use(cookieParser())
@@ -23,6 +25,7 @@ app.use(cors({
 
 
 app.use('/', router)
+app.use('/user' , userRouter )
 
 
 

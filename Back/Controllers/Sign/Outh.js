@@ -46,11 +46,14 @@ const googleAuth = (secretKey)=> async (req, res) => {
       await user.save();
     }
 
+    // Generate token
     const token = generateToken(email, secretKey);
+
+    // Set token as a cookie
     res.cookie("token", token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
     });
 
     res.json({ status: 'success', message: 'Authentication successful', user });

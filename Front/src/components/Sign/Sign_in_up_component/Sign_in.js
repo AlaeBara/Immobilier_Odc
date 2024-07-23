@@ -22,7 +22,7 @@ const SignInForm = () => {
   
       setMessage(response.data.message);
       if (response.data.status === 'success') {
-        history('/test');;
+        history('/user/Profile');;
       }
     } catch (error) {
       console.error("Error occurred:", error.response ? error.response.data : error.message);
@@ -53,7 +53,7 @@ const SignInForm = () => {
       });
 
       if (response.data.status === "success") {
-        history('/test');
+        history('/user/Profile');
       } else {
         history('/');
         setMessage(response.data.message)
