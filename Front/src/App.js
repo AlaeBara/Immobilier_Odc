@@ -1,17 +1,46 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import NavBar from './components/NavBar/NavBar'
-import Sign from './components/Sign/Sign'
+import React, { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import CustomLoader from './components/Loader/Loader';
+
+const wait = (delay) => new Promise(resolve => setTimeout(resolve, delay));
+
+// Lazy loading components
+
+const LazySign = lazy(() => wait(1000).then(() => import('./components/Sign/Sign')));
+
+const LazyMainComponent = lazy(() => wait(1000).then(() => import('./utilisateur/Main_component')));
+const LazyProfileUser = lazy(() => wait(1000).then(() => import('./utilisateur/Profile/Profile')));
+
+
+const UserLayout = ({ children }) => (
+  <Suspense fallback={<CustomLoader />}>
+    <LazyMainComponent />
+    {children}
+  </Suspense>
+);
 
 const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<Sign />}/>
-        <Route path='/test' element={<NavBar />}/>
-      </Routes>
-    </>
-  )
-}
+    <Routes>
+      <Route 
+        path='/' 
+        element={
+          <Suspense fallback={<CustomLoader />}>
+            <LazySign />
+          </Suspense>
+        } 
+      />
+      
+      {/* User routes */}
+      <Route path='/user' element={<UserLayout />}>
+        <Route 
+          path='profile'
+          element={<LazyProfileUser />}
+        />
+      </Route>
+      
+    </Routes>
+  );
+};
 
-export default App
+export default App;

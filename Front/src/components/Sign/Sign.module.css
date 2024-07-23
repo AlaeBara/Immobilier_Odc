@@ -127,19 +127,36 @@ form.sign-in-form {
   font-weight: 500;
 }
 
-.social-text {
-  padding: 0.7rem 0;
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  width: 60%;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.divider-text {
+  padding: 0 0.5rem;
   font-size: 1rem;
 }
 
 .social-media {
   display: flex;
+  margin-top: 10px;
   justify-content: center;
+  width: 60%;
+  border: 1px solid #dbd9d9;
+  border-radius: 15px;
 }
 
 .social-icon {
   height: 46px;
-  width: 46px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,6 +167,11 @@ form.sign-in-form {
   font-size: 1.1rem;
   transition: 0.3s;
   cursor: pointer;
+  gap:20px;
+
+}
+.social-icon img {
+  width: 40px;
 }
 
 .btn {
@@ -245,7 +267,8 @@ form.sign-in-form {
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
-  background-color: var(--accent-color);
+  background-color: #fff;
+  color: #242f35;
   cursor: pointer;
 }
 
@@ -394,6 +417,12 @@ form.sign-in-form {
     top: 5%;
     transform: translate(-50%, 0);
   }
+  .divider {
+    width: 60%;
+  }
+  .social-media {
+    width: 60%;
+  }
 }
 
 @media (max-width: 570px) {
@@ -420,5 +449,11 @@ form.sign-in-form {
   .container.sign-up-mode:before {
     bottom: 28%;
     left: 50%;
+  }
+  .divider {
+    width: 90%;
+  }
+  .social-media {
+    width: 90%;
   }
 }

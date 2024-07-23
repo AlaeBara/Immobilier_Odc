@@ -4,7 +4,6 @@ const jwtMiddleware = (secretKey) => (req, res, next) => {
     const token = req.cookies.token;
     
     if (!token) {
-        // Send a response indicating authentication is required
         return res.status(401).json({ 
             status: 'error',
             message: 'Authentication required',
