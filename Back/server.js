@@ -4,6 +4,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser')
 const router =require('./Router/Router')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 app.use(cookieParser())
@@ -34,6 +36,10 @@ mongoose.connect(process.env.MONGODB_URI, {
     .catch((error) => {
         console.error('MongoDB connection failed:', error.message);
 });
+
+
+// Swagger setup
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the server
 const PORT = process.env.PORT || 8000;
