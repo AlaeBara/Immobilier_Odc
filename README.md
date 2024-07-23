@@ -65,7 +65,7 @@
 - Gérer les Erreurs et les Réussites :
   - Afficher des messages appropriés en cas d'erreur ou de succès lors de l'inscription ou de la connexion. (FR BK)
 
-#### Gestion des Profils : ===> Sprint 2 ⏳
+#### Gestion des Profils :  ==> Sprint 2 ⏳
 - Créer l'Interface de Profil :
   - Développer une page pour afficher et mettre à jour les informations personnelles des utilisateurs.(FR BK)
 - Implémenter la Mise à Jour des Profils :
