@@ -28,10 +28,7 @@
   flex-grow: 1;
   max-width: 600px;
   width: 100%;
-
 }
-
-
 
 .imageContainer {
   position: relative;
@@ -59,29 +56,26 @@
   font-size: 18px;
 }
 
-.updateButton, .saveButton, .editeinfo ,.cancelButton{
+.updateButton, .saveButton, .editeinfo, .cancelButton {
   width: fit-content;
-  padding: 0.5rem;
   background-color: #ef5e4e;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 15px;
+  padding: 10px 20px;
 }
 
-.cancelButton{
+.cancelButton {
   margin-left: 30px;
 }
-
-
-
-
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative; /* Ensure that the message can be positioned absolutely within the form */
 }
 
 .formRow {
@@ -106,14 +100,7 @@
   border-radius: 4px;
 }
 
-.editeinfo {
-  width: fit-content;
-  padding: 0.5rem;
-  background-color: #ef5e4e;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.editeinfo ,.saveButton{
   margin-top: 30px;
 }
 
@@ -138,15 +125,24 @@
   margin-bottom: 1rem;
 }
 
-
-
-.container input:focus{
-  border: 1px solid red;
+.container input:focus {
+  border: 1px solid #ef5e4e;
   outline: none;
 }
 
+.messagePassword {
+  color: #ef5e4e;
+  text-align: center;
+  font-weight: bold;
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+}
 
-
+.formGroup label span {
+  color: #ef5e4e;
+}
 
 @media (min-width: 768px) {
   .formRow {
@@ -165,4 +161,12 @@
   .profileCard, .settingsCard, .passwordCard {
     max-width: 100%;
   }
+  .messagePassword {
+    bottom: 3rem;
+    font-size: 14px;
+  }
+  .saveButton{
+    margin-top: 50px;
+  }
+  
 }

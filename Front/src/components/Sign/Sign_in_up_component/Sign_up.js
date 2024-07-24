@@ -4,15 +4,17 @@ import styles from '../Sign.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useGoogleLogin } from '@react-oauth/google';
 
-
 const SignUpForm = ({onSignUpSuccess}) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const initialFormState = {
+    username: '',
+    email: '',
+    password: ''
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
   const [message, setMessage] = useState('');
   const history = useNavigate();
 
-  // sign up with Google
   const handleGoogleSuccess = async (codeResponse) => {
     try {
       console.log("Google Login Code Response:", codeResponse);
@@ -33,28 +35,31 @@ const SignUpForm = ({onSignUpSuccess}) => {
   };
 
   const googleLogin = useGoogleLogin({
-  onSuccess: handleGoogleSuccess,
-  onError: (error) => {
-    console.log('Google Login Failed:', error);
-    setMessage("Google sign-in failed. Please check your internet connection and try again.");
-  },
-  flow: 'auth-code',
-  clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+    onSuccess: handleGoogleSuccess,
+    onError: (error) => {
+      console.log('Google Login Failed:', error);
+      setMessage("Google sign-in failed. Please check your internet connection and try again.");
+    },
+    flow: 'auth-code',
+    clientId: process.env.REACT_APP_GOOGLE_CLIENT_ID,
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
-  //for sign up with the form
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/signUp", {
-        username,
-        email,
-        password
-      });
+      const response = await axios.post("http://localhost:8000/signUp", formData);
 
       setMessage(response.data.message);
       if (response.data.status === 'success') {
+        setFormData(initialFormState);  // Clear the form
         onSignUpSuccess();
       }
     } catch (error) {
@@ -77,9 +82,10 @@ const SignUpForm = ({onSignUpSuccess}) => {
         </div>
         <input 
           type="text" 
+          name="username"
           placeholder="Username" 
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={formData.username}
+          onChange={handleChange}
           required
         />
       </div>
@@ -90,9 +96,10 @@ const SignUpForm = ({onSignUpSuccess}) => {
         </div>
         <input 
           type="email" 
+          name="email"
           placeholder="Email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
           required
         />
       </div>
@@ -103,9 +110,10 @@ const SignUpForm = ({onSignUpSuccess}) => {
         </div>
         <input 
           type="password" 
+          name="password"
           placeholder="Password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           required
         />
       </div>
@@ -131,4 +139,3 @@ const SignUpForm = ({onSignUpSuccess}) => {
 };
 
 export default SignUpForm;
-

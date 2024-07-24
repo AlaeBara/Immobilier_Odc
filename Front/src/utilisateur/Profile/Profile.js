@@ -14,6 +14,7 @@ const Profile = () => {
     profileImage: null,
   });
 
+  //get info of the user
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -44,6 +45,7 @@ const Profile = () => {
     });
   };
 
+  //for updaate the image profile , and stored on the cloud
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -67,6 +69,7 @@ const Profile = () => {
     }
   };
 
+  //for Update the info the user
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -82,6 +85,45 @@ const Profile = () => {
       console.error('Error updating profile:', error);
     }
   };
+
+
+  //change Password
+  const initialFormState = {
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
+  };
+  const [formPassword, setFormPassword] = useState(initialFormState);
+  const [messagePassword, setMessagePassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormPassword({ ...formPassword, [id]: value });
+  };
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    if (formPassword.newPassword !== formPassword.confirmNewPassword) {
+      setMessagePassword('New passwords do not match.');
+      return;
+    }
+    try {
+      const response = await axios.put('http://localhost:8000/user/changePassword', formPassword, {
+        withCredentials: true,
+      });
+      setMessagePassword(response.data.message);
+      if (response.data.status=='success'){
+        setFormPassword(initialFormState);
+      }
+    } catch (error) {
+      console.error('Error changing password:', error);
+      setMessagePassword('Server error. Please try again later.');
+    }
+  };
+
+  setTimeout(() => {
+    setMessagePassword(false);
+  }, 4000);
 
   return (
     <div className={Style.container}>
@@ -143,10 +185,11 @@ const Profile = () => {
                   <input 
                     type="tel" 
                     id="phone" 
-                    value={isEditing ? formData.phone : userData?.phone || ''} 
+                    value={isEditing ? formData.phone : userData?.phone ||''} 
                     onChange={handleInputChange}
                     readOnly={!isEditing} 
                     pattern="[0-9]{3}[0-9]{3}[0-9]{4}" 
+                    placeholder='Your number phone'
                   />
                 </div>
                 <div className={Style.formGroup}>
@@ -180,21 +223,22 @@ const Profile = () => {
 
         {view === 'password' && (
           <div className={Style.passwordCard}>
-            <form className={Style.form}>
-              <div className={Style.formGroup}>
-                <label htmlFor="oldPassword">Old Password</label>
-                <input type="password" id="oldPassword" />
-              </div>
-              <div className={Style.formGroup}>
-                <label htmlFor="newPassword">New Password</label>
-                <input type="password" id="newPassword" />
-              </div>
-              <div className={Style.formGroup}>
-                <label htmlFor="confirmPassword">Confirm New Password</label>
-                <input type="password" id="confirmPassword" />
-              </div>
-              <button className={Style.saveButton}>Save</button>
-            </form>
+              <form className={Style.form} onSubmit={handleChangePassword}>
+                <div className={Style.formGroup}>
+                  <label htmlFor="oldPassword">Old Password <span>*</span></label>
+                  <input type="password" id="oldPassword" value={formPassword.oldPassword} onChange={handleChange} required />
+                </div>
+                <div className={Style.formGroup}>
+                  <label htmlFor="newPassword">New Password <span>*</span></label>
+                  <input type="password" id="newPassword" value={formPassword.newPassword} onChange={handleChange} required />
+                </div>
+                <div className={Style.formGroup}>
+                  <label htmlFor="confirmNewPassword">Confirm New Password <span>*</span></label>
+                  <input type="password" id="confirmNewPassword" value={formPassword.confirmNewPassword} onChange={handleChange} required />
+                </div>
+                {messagePassword && <p className={Style.messagePassword}>{messagePassword}</p>}
+                <button type="submit" className={Style.saveButton}>Save</button>
+              </form>
           </div>
         )}
       </div>
