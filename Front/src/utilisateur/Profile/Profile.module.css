@@ -59,20 +59,24 @@
   font-size: 18px;
 }
 
-.viewProfile, .updateButton, .saveButton, .editeinfo {
-  width: 100%;
+.updateButton, .saveButton, .editeinfo ,.cancelButton{
+  width: fit-content;
   padding: 0.5rem;
   background-color: #ef5e4e;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 15px;
 }
 
-.saveButton{
-  width: fit-content;
-  padding: 10px 20px;
+.cancelButton{
+  margin-left: 30px;
 }
+
+
+
+
 
 .form {
   display: flex;
