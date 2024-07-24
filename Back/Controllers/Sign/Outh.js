@@ -49,7 +49,6 @@ const googleAuth = (secretKey)=> async (req, res) => {
     // Generate token
     const token = generateToken(email, secretKey);
 
-    // Set token as a cookie
     res.cookie("token", token, {
         httpOnly: true,
         secure: true,

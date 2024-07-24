@@ -6,15 +6,13 @@ const EditeProfile = async() =>{
     const { username, phone, address, country, profileImage } = req.body;
 
     try {
-        let user = await User.findById(req.user.id);
+        let user = await Users.findById(req.user.id);
         if (!user) {
         return res.status(404).json({ msg: 'User not found' });
         }
 
         user.username = username || user.username;
         user.phone = phone || user.phone;
-        user.address = address || user.address;
-        user.country = country || user.country;
         user.profileImage = profileImage || user.profileImage;
 
         await user.save();

@@ -18,6 +18,8 @@ const SignUpForm = ({onSignUpSuccess}) => {
       console.log("Google Login Code Response:", codeResponse);
       const response = await axios.post("http://localhost:8000/googleAuth", {
         code: codeResponse.code,
+      },{
+        withCredentials: true
       });
   
       setMessage(response.data.message);
