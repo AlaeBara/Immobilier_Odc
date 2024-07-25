@@ -2,6 +2,7 @@ import React from 'react'
 import axios  from 'axios'
 import { useNavigate } from 'react-router-dom';
 import './NavBar.css'
+import logo from './logooo.png'
 
 const NavBar = () => {
     const toggleNavbar = () => {
@@ -49,7 +50,7 @@ const NavBar = () => {
                 <div class="container">
 
                     <a href="#" class="logo">
-                        <img src="https://chantiersdumaroc.ma/wp-content/uploads/2021/02/Logo-Horizontal.png" alt="Homeverse logo"/>
+                        <img src={logo} alt="Homeverse logo"/>
                     </a>
 
                     <nav class="navbar" data-navbar>
@@ -57,7 +58,7 @@ const NavBar = () => {
                         <div class="navbar-top">
 
                             <a href="#" class="logo">
-                                <img src="https://chantiersdumaroc.ma/wp-content/uploads/2021/02/Logo-Horizontal.png" alt="Homeverse logo"/>
+                                <img src={logo} alt="Homeverse logo"/>
                             </a>
 
                             <button class="nav-close-btn" onClick={toggleNavbar} aria-label="Close Menu">

@@ -1,8 +1,8 @@
 /* Define custom properties for colors */
 :root {
-  --primary-color: #2B3A42;
-  --secondary-color: #2B3A42;
-  --accent-color: #242f35;
+  --primary-color: #ef5e4e;
+  --secondary-color: #ef5e4e;
+  --accent-color: #fff;
   --text-color: #333;
   --placeholder-color: #aaa;
   --error-color: red;
@@ -186,11 +186,11 @@ form.sign-in-form {
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.5s ease-in-out;
 }
 
 .btn:hover {
-  background-color: var(--accent-color);
+  background-color: rgb(198, 38, 38);
 }
 
 .panels-container {
@@ -211,7 +211,9 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background: linear-gradient(90deg, var(--primary-color) 30%, var(--primary-color) 74%);
+  background-image: url('https://cdn.pixabay.com/photo/2017/01/27/14/11/background-2013175_640.jpg');
+  background-size: cover;
+  background-position: center;
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;

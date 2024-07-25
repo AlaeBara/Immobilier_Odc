@@ -131,7 +131,8 @@
   
   .header-bottom {
     background: var(--white);
-    padding-block: 25px;
+    padding-block: 15px;  
+    /* kant 25 */
   }
   
   .header-bottom .logo img { margin-inline: auto; display: block;width: 200px; }

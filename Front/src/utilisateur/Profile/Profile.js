@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Style from './Profile.module.css';
 
 const Profile = () => {
@@ -14,7 +16,11 @@ const Profile = () => {
     profileImage: null,
   });
 
-  //get info of the user
+  // Add state for password visibility
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -45,7 +51,6 @@ const Profile = () => {
     });
   };
 
-  //for updaate the image profile , and stored on the cloud
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -69,7 +74,6 @@ const Profile = () => {
     }
   };
 
-  //for Update the info the user
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -86,8 +90,6 @@ const Profile = () => {
     }
   };
 
-
-  //change Password
   const initialFormState = {
     oldPassword: '',
     newPassword: '',
@@ -112,8 +114,9 @@ const Profile = () => {
         withCredentials: true,
       });
       setMessagePassword(response.data.message);
-      if (response.data.status=='success'){
+      if (response.data.status === 'success'){
         setFormPassword(initialFormState);
+        setMessagePassword(false)
       }
     } catch (error) {
       console.error('Error changing password:', error);
@@ -121,128 +124,188 @@ const Profile = () => {
     }
   };
 
-  setTimeout(() => {
-    setMessagePassword(false);
-  }, 4000);
+  const togglePasswordVisibility = (type) => {
+    if (type === 'old') {
+      setShowOldPassword(!showOldPassword);
+    } else if (type === 'new') {
+      setShowNewPassword(!showNewPassword);
+    } else if (type === 'confirm') {
+      setShowConfirmNewPassword(!showConfirmNewPassword);
+    }
+  };
 
   return (
-    <div className={Style.container}>
-      <div className={Style.profileCard}>
-        <div className={Style.imageContainer}>
-          <img src={imageUrl} alt="Profile" className={Style.profileImage} />
-          {isEditing && (
-            <>
-              <label htmlFor="imageUpload" className={Style.uploadIcon}>
-                <img width="30" height="30" src="https://img.icons8.com/glyph-neue/64/ef5e4e/plus.png" alt="camera"/>
-              </label>
-              <input
-                type="file"
-                id="imageUpload"
-                accept="image/*"
-                onChange={handleImageUpload}
-                style={{ display: 'none' }}
-              />
-            </>
-          )}
-        </div>
-        <h5>{userData?.username}</h5>
-      </div>
+    <>
 
-      <div className={Style.right_box}>
-        <div className={Style.navigation}>
-          <button 
-            onClick={() => setView('info')} 
-            className={view === 'info' ? Style.active : ''}
-          >
-            Account Info
-          </button>
-          <button 
-            onClick={() => setView('password')} 
-            className={view === 'password' ? Style.active : ''}
-          >
-            Change Password
-          </button>
-        </div>
+      <div className={Style.backgroundImage}></div>
 
-        {view === 'info' && (
-          <div className={Style.settingsCard}>
-            <form className={Style.form} onSubmit={handleSubmit}>
-              <div className={Style.formRow}>
-                <div className={Style.formGroup}>
-                  <label htmlFor="username">Username</label>
-                  <input 
-                    type="text" 
-                    id="username" 
-                    value={isEditing ? formData.username : userData?.username || ''} 
-                    onChange={handleInputChange}
-                    readOnly={!isEditing} 
-                  />
-                </div>
-              </div>
-              <div className={Style.formRow}>
-                <div className={Style.formGroup}>
-                  <label htmlFor="phone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    value={isEditing ? formData.phone : userData?.phone ||''} 
-                    onChange={handleInputChange}
-                    readOnly={!isEditing} 
-                    pattern="[0-9]{3}[0-9]{3}[0-9]{4}" 
-                    placeholder='Your number phone'
-                  />
-                </div>
-                <div className={Style.formGroup}>
-                  <label htmlFor="email">Email Address</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    value={isEditing ? formData.email : userData?.email || ''} 
-                    onChange={handleInputChange}
-                    readOnly={!isEditing} 
-                  />
-                </div>
-              </div>
-              {isEditing && (
-                <div className={Style.buttonGroup}>
-                  <button type="submit" className={Style.saveButton}>Save Changes</button>
-                  <button type="button" className={Style.cancelButton} onClick={() => setIsEditing(false)}>Cancel</button>
-                </div>
-              )}
-            </form>
-            {!isEditing && (
-              <button 
-                className={Style.editeinfo} 
-                onClick={() => setIsEditing(true)}
-              >
-                Edit Info
-              </button>
+      <div className={Style.container}>
+
+        <div className={Style.profileCard}>
+          <div className={Style.imageContainer}>
+            <img src={imageUrl} alt="Profile" className={Style.profileImage} />
+            {isEditing && (
+              <>
+                <label htmlFor="imageUpload" className={Style.uploadIcon}>
+                  <img width="30" height="30" src="https://img.icons8.com/glyph-neue/64/ef5e4e/plus.png" alt="camera"/>
+                </label>
+                <input
+                  type="file"
+                  id="imageUpload"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  style={{ display: 'none' }}
+                />
+              </>
             )}
           </div>
-        )}
+          <h5>{userData?.username}</h5>
+        </div>
 
-        {view === 'password' && (
-          <div className={Style.passwordCard}>
+        <div className={Style.right_box}>
+          <div className={Style.navigation}>
+            <button 
+              onClick={() => setView('info')} 
+              className={view === 'info' ? Style.active : ''}
+            >
+              Account Info
+            </button>
+            <button 
+              onClick={() => setView('password')} 
+              className={view === 'password' ? Style.active : ''}
+            >
+              Change Password
+            </button>
+          </div>
+
+          {view === 'info' && (
+            <div className={Style.settingsCard}>
+              <form className={Style.form} onSubmit={handleSubmit}>
+                <div className={Style.formRow}>
+                  <div className={Style.formGroup}>
+                    <label htmlFor="username">Username</label>
+                    <input 
+                      type="text" 
+                      id="username" 
+                      value={isEditing ? formData.username : userData?.username || ''} 
+                      onChange={handleInputChange}
+                      readOnly={!isEditing} 
+                    />
+                  </div>
+                </div>
+                <div className={Style.formRow}>
+                  <div className={Style.formGroup}>
+                    <label htmlFor="phone">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      value={isEditing ? formData.phone : userData?.phone ||''} 
+                      onChange={handleInputChange}
+                      readOnly={!isEditing} 
+                      pattern="[0-9]{3}[0-9]{3}[0-9]{4}" 
+                      placeholder='Your number phone'
+                    />
+                  </div>
+                  <div className={Style.formGroup}>
+                    <label htmlFor="email">Email Address</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      value={isEditing ? formData.email : userData?.email || ''} 
+                      onChange={handleInputChange}
+                      readOnly={!isEditing} 
+                    />
+                  </div>
+                </div>
+                {isEditing && (
+                  <div className={Style.buttonGroup}>
+                    <button type="submit" className={Style.saveButton}>Save Changes</button>
+                    <button type="button" className={Style.cancelButton} onClick={() => setIsEditing(false)}>Cancel</button>
+                  </div>
+                )}
+              </form>
+              {!isEditing && (
+                <button 
+                  className={Style.editeinfo} 
+                  onClick={() => setIsEditing(true)}
+                >
+                  Edit Info
+                </button>
+              )}
+            </div>
+          )}
+
+          {view === 'password' && (
+            <div className={Style.passwordCard}>
               <form className={Style.form} onSubmit={handleChangePassword}>
                 <div className={Style.formGroup}>
                   <label htmlFor="oldPassword">Old Password <span>*</span></label>
-                  <input type="password" id="oldPassword" value={formPassword.oldPassword} onChange={handleChange} required />
+                  <div className={Style.passwordWrapper}>
+                    <input 
+                      type={showOldPassword ? "text" : "password"} 
+                      id="oldPassword" 
+                      value={formPassword.oldPassword} 
+                      onChange={handleChange} 
+                      required 
+                    />
+                    <button 
+                      type="button" 
+                      className={Style.toggleButton} 
+                      onClick={() => togglePasswordVisibility('old')}
+                    >
+                      <FontAwesomeIcon icon={showOldPassword ? faEye : faEyeSlash} />
+                    </button>
+                  </div>
                 </div>
                 <div className={Style.formGroup}>
                   <label htmlFor="newPassword">New Password <span>*</span></label>
-                  <input type="password" id="newPassword" value={formPassword.newPassword} onChange={handleChange} required />
+                  <div className={Style.passwordWrapper}>
+                    <input 
+                      type={showNewPassword ? "text" : "password"} 
+                      id="newPassword" 
+                      value={formPassword.newPassword} 
+                      onChange={handleChange} 
+                      required 
+                    />
+                    <button 
+                      type="button" 
+                      className={Style.toggleButton} 
+                      onClick={() => togglePasswordVisibility('new')}
+                    >
+                      <FontAwesomeIcon icon={showNewPassword ? faEye : faEyeSlash} />
+                    </button>
+                  </div>
                 </div>
                 <div className={Style.formGroup}>
                   <label htmlFor="confirmNewPassword">Confirm New Password <span>*</span></label>
-                  <input type="password" id="confirmNewPassword" value={formPassword.confirmNewPassword} onChange={handleChange} required />
+                  <div className={Style.passwordWrapper}>
+                    <input 
+                      type={showConfirmNewPassword ? "text" : "password"} 
+                      id="confirmNewPassword" 
+                      value={formPassword.confirmNewPassword} 
+                      onChange={handleChange} 
+                      required 
+                    />
+                    <button 
+                      type="button" 
+                      className={Style.toggleButton} 
+                      onClick={() => togglePasswordVisibility('confirm')}
+                    >
+                      <FontAwesomeIcon icon={showConfirmNewPassword ?faEye : faEyeSlash} />
+                    </button>
+                  </div>
                 </div>
                 {messagePassword && <p className={Style.messagePassword}>{messagePassword}</p>}
                 <button type="submit" className={Style.saveButton}>Save</button>
               </form>
-          </div>
-        )}
+            </div>
+          )}
+
+
+        </div>
+      
       </div>
-    </div>
+    </>
   );
 };
 
