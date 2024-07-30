@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import CustomLoader from './components/Loader/Loader';
-import ProtectRoutes from './components/ProtectRoutes/ProtectRoutes'
+import ProtectRoutes from './ProtectRoutes/ProtectRoutes'
 
 const wait = (delay) => new Promise(resolve => setTimeout(resolve, delay));
 

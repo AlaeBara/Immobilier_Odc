@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './Sign.module.css'; 
 import SignInForm from './Sign_in_up_component/Sign_in';
 import SignUpForm from './Sign_in_up_component/Sign_up';
+import svg1 from './signIn.svg'
+import svg2 from './sign-up.svg'
 
 
 const AuthContainer = () => {
@@ -34,7 +36,7 @@ const AuthContainer = () => {
               Sign up
             </button>
           </div>
-          <img src="https://www.sarouty.ma/dist/common/assets/c141dc8307.login-modal-default.svg" className={styles.image} alt="Real Estate" />
+          <img src={svg1} className={styles.image} alt="Real Estate" />
         </div>
         <div className={`${styles.panel} ${styles['right-panel']}`}>
           <div className={styles.content}>
@@ -46,7 +48,7 @@ const AuthContainer = () => {
               Sign in
             </button>
           </div>
-          <img src="https://www.sarouty.ma/dist/common/assets/c141dc8307.login-modal-default.svg" className={styles.image} alt="Real Estate" />
+          <img src={svg2}  className={styles.image} alt="Real Estate" />
         </div>
       </div>
     </div>
